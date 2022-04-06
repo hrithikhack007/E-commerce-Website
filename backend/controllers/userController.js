@@ -6,6 +6,7 @@ const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs/dist/bcrypt");
 const { log } = require("console");
+const Product = require("../models/productModel");
 
 // Register a User
 
@@ -142,4 +143,219 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   sendToken(user, 200, res);
+});
+
+// Get User Detail
+
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// update User password
+
+exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select("+password");
+
+  const isPasswordMacthed = await user.comparePassword(req.body.oldPassword);
+
+  if (!isPasswordMacthed) {
+    return next(new ErrorHandler("Old password is incorrect", 400));
+  }
+
+  if (req.body.newPassword != req.body.confirmPassword) {
+    return next(new ErrorHandler("password does not match", 400));
+  }
+
+  user.password = req.body.newPassword;
+
+  await user.save();
+
+  sendToken(user, 200, res);
+});
+
+// update User profile
+
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  // we will add cloudinary later
+
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// Get all users (admin)
+
+exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+
+// Get single users (admin)
+
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not exist with Id: ${req.params.id}`, 404)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// update User Role -Admin
+
+exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// Delete User --Admin
+
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not exist with Id: ${req.params.id}`, 404)
+    );
+  }
+
+  await user.remove();
+
+  res.status(200).json({
+    success: true,
+    message: "User Deleted successfully",
+  });
+});
+
+// Create New Review or Update the review
+
+exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
+  const { rating, comment, productId } = req.body;
+
+  const review = {
+    user: req.user._id,
+    name: req.user.name,
+    rating: Number(rating),
+    comment,
+  };
+
+  const product = await Product.findById(productId);
+
+  const isReviewed = product.reviews.find(
+    (rev) => rev.user.toString() === req.user._id.toString()
+  );
+
+  if (isReviewed) {
+    product.reviews.forEach((rev) => {
+      if (rev.user.toString() === req.user._id.toString()) {
+        rev.rating = rating;
+        rev.comment = comment;
+      }
+    });
+  } else {
+    product.reviews.push(review);
+  }
+
+  let avg = 0;
+
+  product.numOfReviews = product.reviews.length;
+
+  product.reviews.forEach((rev) => {
+    avg += rev.rating;
+  });
+
+  product.ratings = avg / product.numOfReviews;
+
+  await product.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+// Get All Reviews of a product
+
+exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.query.id);
+
+  if (!product) {
+    return next(new ErrorHandler("Product not found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    reviews: product.reviews,
+  });
+});
+
+// Delete Review
+
+exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.query.productId);
+
+  if (!product) {
+    return next(new ErrorHandler("Product not found", 404));
+  }
+
+  product.reviews = product.reviews.filter((rev) => {
+    return rev._id.toString() !== req.query.id.toString();
+  });
+
+  let avg = 0;
+
+  product.numOfReviews = product.reviews.length;
+
+  product.reviews.forEach((rev) => {
+    avg += rev.rating;
+  });
+
+  product.ratings = product.numOfReviews == 0 ? 0 : avg / product.numOfReviews;
+
+  await product.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+    product,
+  });
 });
