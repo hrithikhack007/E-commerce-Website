@@ -8,6 +8,7 @@ import { useAlert } from "react-alert";
 import ReactStarts from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader.js";
+import MetaData from "../layout/MetaData.js";
 
 const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
@@ -42,10 +43,11 @@ const ProductDetails = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
+          <MetaData title={`${product.name} --ECOMMERCE`} />
           <div className="ProductDetails">
             <div>
               <Carousel>
-                {product.images &&
+                {product.images && product.images[0] ? (
                   product.images.map((image, i) => (
                     <img
                       className="CarouselImage"
@@ -53,7 +55,10 @@ const ProductDetails = ({ match }) => {
                       key={image.url}
                       alt={`${i} Slide`}
                     />
-                  ))}
+                  ))
+                ) : (
+                  <div className="noImage">No Image Available</div>
+                )}
               </Carousel>
             </div>
 

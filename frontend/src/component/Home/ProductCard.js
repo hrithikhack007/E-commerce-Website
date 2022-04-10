@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import ProductDetails from "../Product/ProductDetails";
 
 const ProductCard = ({ product }) => {
   const options = {
@@ -14,7 +15,11 @@ const ProductCard = ({ product }) => {
 
   return (
     <Link className="productCard" to={`/product/${product._id}`}>
-      <img src={product.images[0].url} alt={product.name} />
+      {product.images[0] ? (
+        <img src={product.images[0].url} alt={product.name} />
+      ) : (
+        <div className="noImage">No Image Available</div>
+      )}
       <p>{product.name}</p>
       <div>
         <ReactStars {...options} />{" "}

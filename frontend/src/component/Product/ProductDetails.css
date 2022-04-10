@@ -203,6 +203,13 @@
   color: rgba(0, 0, 0, 0.548);
 }
 
+.productDetails > .noImage {
+  width: 5vmax;
+  padding: 1vmax;
+  align-items: center;
+  margin: auto;
+}
+
 @media screen and (max-width: 600px) {
   .ProductDetails {
     flex-direction: column;

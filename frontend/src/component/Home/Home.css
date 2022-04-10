@@ -118,6 +118,13 @@
   transform: translateY(-1vmax);
 }
 
+.productCard > .noImage {
+  width: 5vmax;
+  padding: 1vmax;
+  align-items: center;
+  margin: auto;
+}
+
 @media screen and (max-width: 600px) {
   .productCard > p {
     font-size: 1.7vmax;
