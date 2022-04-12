@@ -35,6 +35,7 @@ const ForgotPassword = () => {
 
     if (message) {
       alert.success(message);
+      
     }
   }, [dispatch, error, alert, message]);
 

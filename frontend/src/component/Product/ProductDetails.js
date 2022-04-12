@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,6 +35,15 @@ const ProductDetails = ({ match }) => {
     value: product.ratings,
     isHalf: true,
     size: window.innerWidth < 600 ? 20 : 25,
+  };
+
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+  const decreaseQuantity = () => {
+    setQuantity(quantity - 1);
   };
 
   return (
@@ -77,9 +86,9 @@ const ProductDetails = ({ match }) => {
                 <h1>{`₹${product.price}`}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
-                    <button>-</button>
-                    <input value="1" inputmode="numeric" />
-                    <button>+</button>
+                    <button onClick={decreaseQuantity}>-</button>
+                    <input value={quantity} inputmode="numeric" />
+                    <button onClick={increaseQuantity}>+</button>
                   </div>
                   <button>Add to Cart</button>
                 </div>

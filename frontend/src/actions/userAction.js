@@ -22,7 +22,7 @@ import {
   FORGOT_PASSWORD_FAIL,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
-  RESET_PASSWORD_FAIL,
+  RESET_PASSWORD_FAIL
 } from "../constants/userConstant";
 
 import axios from "axios";
