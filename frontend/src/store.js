@@ -7,12 +7,13 @@ import {
   productDetailsReducer,
   productReducer,
 } from "./reducers/productReducer";
-import { userReducer } from "./reducers/userReducer";
+import { profileReducer, userReducer } from "./reducers/userReducer";
 
 const reducer = combineReducers({
   products: productReducer,
   productDetails: productDetailsReducer,
   user: userReducer,
+  profile: profileReducer,
 });
 
 let initialState = {};
