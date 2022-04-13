@@ -8,10 +8,13 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import { useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Backdrop from "@material-ui/core/Backdrop";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const UserOptions = ({ user }) => {
+  const { cartItems } = useSelector((state) => state.cart);
+
   const [open, setOpen] = useState(false);
   const history = useHistory();
 
@@ -21,6 +24,15 @@ const UserOptions = ({ user }) => {
   const options = [
     { icons: <ListAltIcon />, name: "Orders", func: orders },
     { icons: <PersonIcon />, name: "Profile", func: account },
+    {
+      icons: (
+        <ShoppingCartIcon
+          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
+        />
+      ),
+      name: `Cart(${cartItems.length})`,
+      func: cart,
+    },
     { icons: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -40,6 +52,9 @@ const UserOptions = ({ user }) => {
   }
   function account() {
     history.push("/account");
+  }
+  function cart() {
+    history.push("/cart");
   }
   function logoutUser() {
     dispatch(logout());
@@ -71,6 +86,7 @@ const UserOptions = ({ user }) => {
             icon={item.icons}
             tooltipTitle={item.name}
             onClick={item.func}
+            tooltipOpen
           />
         ))}
       </SpeedDial>

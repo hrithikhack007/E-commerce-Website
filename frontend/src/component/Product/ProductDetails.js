@@ -9,6 +9,7 @@ import ReactStarts from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader.js";
 import MetaData from "../layout/MetaData.js";
+import { addItemsToCart } from "../../actions/cartAction";
 
 const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
@@ -18,6 +19,22 @@ const ProductDetails = ({ match }) => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
+
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    if (product.stock <= quantity) return;
+    setQuantity(quantity + 1);
+  };
+  const decreaseQuantity = () => {
+    if (quantity == 1) return;
+    setQuantity(quantity - 1);
+  };
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(match.params.id, quantity));
+    alert.success("Items Added To cart");
+  };
 
   useEffect(() => {
     if (error) {
@@ -35,15 +52,6 @@ const ProductDetails = ({ match }) => {
     value: product.ratings,
     isHalf: true,
     size: window.innerWidth < 600 ? 20 : 25,
-  };
-
-  const [quantity, setQuantity] = useState(1);
-
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-  const decreaseQuantity = () => {
-    setQuantity(quantity - 1);
   };
 
   return (
@@ -87,10 +95,10 @@ const ProductDetails = ({ match }) => {
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
                     <button onClick={decreaseQuantity}>-</button>
-                    <input value={quantity} inputmode="numeric" />
+                    <input readOnly value={quantity} inputmode="numeric" />
                     <button onClick={increaseQuantity}>+</button>
                   </div>
-                  <button>Add to Cart</button>
+                  <button onClick={addToCartHandler}>Add to Cart</button>
                 </div>
 
                 <p>

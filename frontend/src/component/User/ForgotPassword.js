@@ -8,6 +8,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, forgotPassword } from "../../actions/userAction";
 import { useAlert } from "react-alert";
+import { RESET_PASSWORD_RESET } from "../../constants/userConstant";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const ForgotPassword = () => {
 
     if (message) {
       alert.success(message);
-      
+      dispatch({ type: RESET_PASSWORD_RESET });
     }
   }, [dispatch, error, alert, message]);
 
