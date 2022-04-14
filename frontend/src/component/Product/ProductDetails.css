@@ -46,7 +46,7 @@
   padding: 1vmax 0;
 }
 
-.detailsBlock-2 > span {
+.detailsBlock-2-span {
   font: 200 0.8vmax cursive;
   color: rgba(0, 0, 0, 0.699);
 }
@@ -60,7 +60,6 @@
   font: 400 1.8vmax "Franklin Gothic Medium";
   margin: 1vmax 0;
 }
-
 .detailsBlock-3-1 {
   display: flex;
   align-items: center;
@@ -74,7 +73,6 @@
   color: white;
   transition: all 0.5s;
 }
-
 .detailsBlock-3-1-1 > button:hover {
   background-color: rgba(0, 0, 0, 0.767);
 }
@@ -164,7 +162,6 @@
   margin: auto;
   margin-bottom: 4vmax;
 }
-
 .reviews {
   display: flex;
   overflow: auto;
@@ -182,17 +179,14 @@
   margin: 1vmax;
   padding: 3vmax;
 }
-
 .reviewCard > img {
   width: 5vmax;
 }
-
 .reviewCard > p {
   color: rgba(0, 0, 0, 0.836);
   font: 600 0.9vmax "Roboto";
 }
-
-.reviewCard > span {
+.reviewCardComment {
   color: rgba(0, 0, 0, 0.445);
   font: 300 0.8vmax cursive;
 }
@@ -201,13 +195,6 @@
   font: 400 1.3vmax "Gill Sans";
   text-align: center;
   color: rgba(0, 0, 0, 0.548);
-}
-
-.productDetails > .noImage {
-  width: 5vmax;
-  padding: 1vmax;
-  align-items: center;
-  margin: auto;
 }
 
 @media screen and (max-width: 600px) {

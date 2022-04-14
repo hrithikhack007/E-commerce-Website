@@ -1,5 +1,5 @@
 .banner {
-  background-image: linear-gradient(to right, #635dc0, #3027ae);
+  background-image: url("../../images/cover.jfif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,7 +33,6 @@
   width: 9vmax;
   font: 500 1vmax "Roboto";
 }
-
 .banner > a > button:hover {
   background-color: rgba(255, 255, 255, 0);
   color: white;
@@ -44,11 +43,11 @@
   width: 100vw;
   height: 100vmin;
   background-color: #ffffff;
-  max-width: 100%;
   position: absolute;
   top: 0%;
   left: 0;
   clip-path: polygon(100% 68%, 0 100%, 100% 100%);
+  max-width: 100%;
 }
 
 .homeHeading {
@@ -93,7 +92,7 @@
   align-items: center;
 }
 
-.productCard > div > Span {
+.productCardSpan {
   margin: 0.5vmax;
   font: 300 0.7vmax "Roboto";
 }
@@ -113,16 +112,9 @@
 }
 
 .productCard:hover {
-  box-shadow: 0 0 25px rgba(15, 15, 15, 0.26);
+  box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
 
   transform: translateY(-1vmax);
-}
-
-.productCard > .noImage {
-  width: 5vmax;
-  padding: 1vmax;
-  align-items: center;
-  margin: auto;
 }
 
 @media screen and (max-width: 600px) {
