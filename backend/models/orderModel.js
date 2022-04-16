@@ -25,6 +25,11 @@ const orderSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
+
+    city: {
+      type: String,
+      required: true,
+    },
   },
 
   orderItems: [
