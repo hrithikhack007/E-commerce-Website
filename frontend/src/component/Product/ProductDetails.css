@@ -164,7 +164,13 @@
 }
 .reviews {
   display: flex;
-  overflow: auto;
+  margin: 2vmax auto;
+  width: 100vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  /* display: flex;
+  overflow: auto; */
 }
 
 .reviewCard {
@@ -172,7 +178,7 @@
 
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
   border: 1px solid rgba(56, 56, 56, 0.116);
-  width: 30vmax;
+  width: 20vmax;
   display: flex;
   flex-direction: column;
   align-items: center;
