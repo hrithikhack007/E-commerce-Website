@@ -32,6 +32,10 @@ import {
   ALL_REVIEW_REQUEST,
   ALL_REVIEW_SUCCESS,
   ALL_REVIEW_FAIL,
+  DELETE_REVIEW_REQUEST_USER,
+  DELETE_REVIEW_SUCCESS_USER,
+  DELETE_REVIEW_FAIL_USER,
+  DELETE_REVIEW_RESET_USER,
 } from "../constants/productConstants";
 
 export const productsReducer = (state = { products: [] }, action) => {
@@ -257,6 +261,7 @@ export const productReviewsReducer = (state = { reviews: [] }, action) => {
 export const reviewReducer = (state = { product: {} }, action) => {
   switch (action.type) {
     case DELETE_REVIEW_REQUEST:
+      
       return {
         ...state,
         loading: true,
@@ -288,3 +293,5 @@ export const reviewReducer = (state = { product: {} }, action) => {
       return state;
   }
 };
+
+

@@ -20,6 +20,7 @@ import {
   DELETE_ORDER_SUCCESS,
   DELETE_ORDER_FAIL,
   DELETE_ORDER_RESET,
+  CREATE_ORDER_RESET,
 } from "../constants/orderConstant";
 
 export const newOrderReducer = (state = {}, action) => {
@@ -34,6 +35,7 @@ export const newOrderReducer = (state = {}, action) => {
       return {
         loading: false,
         order: action.payload,
+        success: true,
       };
     }
 
@@ -41,6 +43,12 @@ export const newOrderReducer = (state = {}, action) => {
       return {
         loading: false,
         error: action.payload,
+      };
+
+    case CREATE_ORDER_RESET:
+      return {
+        ...state,
+        success: false,
       };
 
     case CLEAR_ERRORS:

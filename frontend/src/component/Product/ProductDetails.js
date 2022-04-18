@@ -22,11 +22,23 @@ import {
 
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
+import { deleteReviews } from "../../actions/productAction";
+import { DELETE_REVIEW_RESET } from "../../constants/productConstants";
 
 const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
 
   const alert = useAlert();
+
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+
+  const { error: deleteError, isDeleted } = useSelector(
+    (state) => state.review
+  );
+
+  const deleteReviewHandler = (reviewId, productId) => {
+    dispatch(deleteReviews(reviewId, productId));
+  };
 
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
@@ -86,9 +98,27 @@ const ProductDetails = ({ match }) => {
       alert.success("Review Submitted Successfully");
       dispatch({ type: NEW_REVIEW_RESET });
     }
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
+
+    if (isDeleted) {
+      alert.success("Review Deleted Successfully");
+      dispatch({ type: DELETE_REVIEW_RESET });
+    }
 
     dispatch(getProductDetails(match.params.id));
-  }, [dispatch, error, alert, match.params.id, reviewError, success]);
+  }, [
+    dispatch,
+    error,
+    alert,
+    match.params.id,
+    reviewError,
+    success,
+    deleteError,
+    isDeleted,
+  ]);
 
   const options = {
     size: "large",
@@ -205,7 +235,15 @@ const ProductDetails = ({ match }) => {
           {product.reviews && product.reviews[0] ? (
             <div className="reviews">
               {product.reviews &&
-                product.reviews.map((review) => <ReviewCard review={review} />)}
+                product.reviews.map((review) => (
+                  <ReviewCard
+                    review={review}
+                    user={user}
+                    isAuthenticated={isAuthenticated}
+                    productId={match.params.id}
+                    deleteReviewHandler={deleteReviewHandler}
+                  />
+                ))}
             </div>
           ) : (
             <p className="noReviews">No Reviews Yet</p>

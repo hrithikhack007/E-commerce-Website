@@ -6,12 +6,28 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className="PageNotFound">
-      <ErrorIcon />
+    <>
+      {window.location.pathname === "/process/payment" ? (
+        <>
+          <div id="paymentBug">
+            <Typography className="heading">Sorry For Inconvenience</Typography>
+            <p className="message">
+              Please refresh the page once in case you are confirming your
+              order.
+            </p>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="PageNotFound">
+            <ErrorIcon />
 
-      <Typography>Page Not Found </Typography>
-      <Link to="/">Home</Link>
-    </div>
+            <Typography>Page Not Found </Typography>
+            <Link to="/">Home</Link>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

@@ -11,9 +11,11 @@
 .products {
   display: flex;
   flex-wrap: wrap;
-  padding: 0 5vmax;
+  padding: 0 3vmax;
   justify-content: center;
   min-height: 30vh;
+  margin-left: 10vmax;
+  /* margin-right: 5vmax; */
 }
 
 .paginationBox {
@@ -96,6 +98,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  .products {
+    margin: 0;
+  }
+
   .filterBox {
     width: 20vmax;
     position: static;

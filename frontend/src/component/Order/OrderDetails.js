@@ -85,7 +85,7 @@ const OrderDetails = ({ match }) => {
                 <div>
                   <p
                     className={
-                      order.orderStatus && order.orderStatus === "Delivered"
+                      order.orderStatus && order.orderStatus === "delivered"
                         ? "greenColor"
                         : "redColor"
                     }

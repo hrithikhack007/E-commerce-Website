@@ -14,7 +14,11 @@ const Readable = require("stream").Readable;
 // Register a User
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const myCloud = await uploadImage(req.file);
+  const myCloud = await cloudinary.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
 
   const { name, email, password } = req.body;
 
@@ -190,14 +194,18 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     email: req.body.email,
   };
 
-  if (req.body.avatar != "") {
+  if (req.body.avatar !== "") {
     const user = await User.findById(req.user.id);
 
     const imageId = user.avatar.public_id;
 
     await cloudinary.uploader.destroy(imageId);
 
-    const myCloud = await uploadImage(req.file);
+    const myCloud = await cloudinary.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+      width: 150,
+      crop: "scale",
+    });
 
     newUserData.avatar = {
       public_id: myCloud.public_id,
@@ -301,13 +309,16 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
 
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
   const { rating, comment, productId } = req.body;
+  const currUser = await User.findById(req.user.id);
 
   const review = {
+    userAvatar: currUser.avatar.url,
     user: req.user._id,
     name: req.user.name,
     rating: Number(rating),
     comment,
   };
+  console.log(currUser.avatar.url);
 
   const product = await Product.findById(productId);
 

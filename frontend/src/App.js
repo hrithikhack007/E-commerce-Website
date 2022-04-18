@@ -44,7 +44,7 @@ import ProductReviews from "./component/Admin/ProductReviews.js";
 
 import NotFound from "./component/NotFound";
 
-function App() {
+function App({ match }) {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const [stripeApiKey, setStripeApiKey] = useState("");

@@ -21,7 +21,7 @@ const UpdateProfile = ({ history }) => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [avatar, setAvatar] = useState("/Profile.png");
+  const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   const updateProfileSubmit = (e) => {
@@ -38,11 +38,10 @@ const UpdateProfile = ({ history }) => {
 
   const updateProfileDataChange = (e) => {
     const reader = new FileReader();
-    setAvatar(e.target.files[0]);
     reader.onload = () => {
       if (reader.readyState === 2) {
         setAvatarPreview(reader.result);
-        // setAvatar(reader.result);
+        setAvatar(reader.result);
       }
     };
 

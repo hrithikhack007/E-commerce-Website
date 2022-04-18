@@ -2,6 +2,7 @@ import {
   ADD_TO_CART,
   REMOVE_CART_ITEM,
   SAVE_SHIPPING_INFO,
+  CLEAR_CART_INFO,
 } from "../constants/cartConstant";
 
 import axios from "axios";

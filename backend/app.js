@@ -3,6 +3,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
+const fileUpload = require("express-fileupload");
 
 const errorMiddleware = require("./middleware/error");
 
@@ -19,6 +20,8 @@ app.use(
     extended: true,
   })
 );
+
+app.use(fileUpload());
 
 // Route Imports
 

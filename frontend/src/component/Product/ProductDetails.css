@@ -174,6 +174,7 @@
 }
 
 .reviewCard {
+  position: relative;
   flex: none;
 
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
@@ -203,10 +204,28 @@
   color: rgba(0, 0, 0, 0.548);
 }
 
+.reviewCard > svg {
+  color: red;
+  position: absolute;
+  right: 3vmax;
+  top: 1.5vmax;
+  cursor: pointer;
+  transform: scale(1.3);
+  /* transform: translateX(2vmax) translateY(-1vmax); */
+}
+
+.reviewCard > img {
+  width: 3.6vmax;
+  height: 3.6vmax;
+  border-radius: 100%;
+}
+
 @media screen and (max-width: 600px) {
   .ProductDetails {
     flex-direction: column;
     height: unset;
+    width: 100vw;
+    max-width: 100%;
   }
 
   .ProductDetails > div:last-child {
@@ -286,5 +305,14 @@
   }
   .reviewCardComment {
     font: 300 5vw cursive;
+  }
+  .reviewCard {
+    width: 100%;
+  }
+
+  .reviewCard > img {
+    margin-bottom: 2vmax;
+    width: 10vmax;
+    height: 10vmax;
   }
 }

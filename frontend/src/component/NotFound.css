@@ -1,43 +1,77 @@
 .PageNotFound {
-    margin: auto;
-    text-align: center;
-    padding: 10vmax;
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .PageNotFound > svg {
-    font-size: 7vmax;
-    color: tomato;
-  }
-  .PageNotFound > p {
-    font-size: 2vmax;
-  }
+  margin: auto;
+  text-align: center;
+  padding: 10vmax;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.PageNotFound > svg {
+  font-size: 7vmax;
+  color: tomato;
+}
+.PageNotFound > p {
+  font-size: 2vmax;
+}
+.PageNotFound > a {
+  background-color: rgb(51, 51, 51);
+  color: white;
+  border: none;
+  padding: 1vmax 3vmax;
+  cursor: pointer;
+  font: 400 1vmax "Roboto";
+  text-decoration: none;
+  margin: 2vmax;
+}
+
+#paymentBug {
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#paymentBug > .heading {
+  color: rgb(0, 0, 0);
+  font: 300 2vmax "Roboto";
+  margin: 2.5vmax 0vmax;
+}
+
+.message {
+  color: red;
+  font: 400 2.5vmax "Roboto";
+}
+
+@media screen and (max-width: 600px) {
   .PageNotFound > a {
-    background-color: rgb(51, 51, 51);
-    color: white;
-    border: none;
-    padding: 1vmax 3vmax;
-    cursor: pointer;
-    font: 400 1vmax "Roboto";
-    text-decoration: none;
+    padding: 3vw 6vw;
+    font: 400 4vw "Roboto";
     margin: 2vmax;
   }
-  
-  @media screen and (max-width: 600px) {
-    .PageNotFound > a {
-      padding: 3vw 6vw;
-      font: 400 4vw "Roboto";
-      margin: 2vmax;
-    }
-  
-    .PageNotFound > svg {
-      font-size: 20vw;
-    }
-    .PageNotFound > p {
-      margin: 2vmax;
-      font-size: 5vw;
-    }
+
+  .PageNotFound > svg {
+    font-size: 20vw;
   }
+  .PageNotFound > p {
+    margin: 2vmax;
+    font-size: 5vw;
+  }
+
+  #paymentBug {
+    margin: 20vmax 0vmax;
+    text-align: center;
+  }
+
+  #paymentBug > .heading {
+    margin: 2.5vmax 0vmax;
+    font:300 3vmax "Roboto"
+  }
+
+  .message {
+    font: 400 3.5vmax "Roboto";
+  }
+}
