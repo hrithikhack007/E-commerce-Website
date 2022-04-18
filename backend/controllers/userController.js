@@ -7,16 +7,14 @@ const crypto = require("crypto");
 const bcrypt = require("bcryptjs/dist/bcrypt");
 const { log } = require("console");
 const Product = require("../models/productModel");
-const cloudinary = require("cloudinary");
+const uploadImage = require("../utils/uploadImage");
+const cloudinary = require("cloudinary").v2;
+const Readable = require("stream").Readable;
 
 // Register a User
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "avatars",
-    width: 150,
-    crop: "scale",
-  });
+  const myCloud = await uploadImage(req.file);
 
   const { name, email, password } = req.body;
 
@@ -29,7 +27,6 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
       url: myCloud.secure_url,
     },
   });
-
   sendToken(user, 201, res);
 });
 
@@ -198,13 +195,9 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
     const imageId = user.avatar.public_id;
 
-    await cloudinary.v2.uploader.destroy(imageId);
+    await cloudinary.uploader.destroy(imageId);
 
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-      folder: "avatars",
-      width: 150,
-      crop: "scale",
-    });
+    const myCloud = await uploadImage(req.file);
 
     newUserData.avatar = {
       public_id: myCloud.public_id,

@@ -1,7 +1,7 @@
 const app = require("./app");
 
 const { default: mongoose } = require("mongoose");
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
 const connectDatabase = require("./config/database");
 
 // Handling Uncaught Exception
@@ -23,6 +23,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 connectDatabase();
 
 cloudinary.config({
+  secure: true,
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,

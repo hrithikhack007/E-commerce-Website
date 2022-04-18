@@ -38,11 +38,11 @@ const UpdateProfile = ({ history }) => {
 
   const updateProfileDataChange = (e) => {
     const reader = new FileReader();
-
+    setAvatar(e.target.files[0]);
     reader.onload = () => {
       if (reader.readyState === 2) {
         setAvatarPreview(reader.result);
-        setAvatar(reader.result);
+        // setAvatar(reader.result);
       }
     };
 
