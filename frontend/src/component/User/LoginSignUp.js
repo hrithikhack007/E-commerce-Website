@@ -9,6 +9,7 @@ import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
+import Note from "./Note";
 
 const LoginSignUp = ({ history, location }) => {
   const dispatch = useDispatch();
@@ -195,6 +196,7 @@ const LoginSignUp = ({ history, location }) => {
               <input type="submit" value="Register" className="signUpBtn" />
             </form>
           </div>
+          <Note />
         </div>
       )}
     </>

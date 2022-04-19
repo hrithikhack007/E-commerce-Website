@@ -1,0 +1,51 @@
+.noteContainer {
+  width: 100vw;
+  max-width: 100%;
+}
+
+.noteBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1vmax;
+  border-top: 1px solid black;
+  padding: vmax;
+}
+
+.noteHeading {
+  text-align: center;
+  width: 30%;
+  color: tomato;
+  font: 400 1.5vmax "Roboto";
+  margin: 0.5vmax auto;
+}
+
+.noteMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5vmax 0vmax;
+}
+
+@media screen and (max-width: 600px) {
+  .noteBox {
+    margin: 0;
+    padding: 0;
+  }
+
+  .noteHeading {
+    font: 500 3vmax "Roboto";
+  }
+
+  .noteMessage > p {
+    font-size: 2vmax;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: 1vmax auto;
+    text-align: center;
+    padding: 0.5vmax 0vmax;
+  }
+}

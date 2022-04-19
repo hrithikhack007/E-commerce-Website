@@ -9,6 +9,7 @@
   position: fixed;
   top: 0%;
   left: 0%;
+  flex-direction: column;
 }
 
 .LoginSignUpBox {
@@ -168,10 +169,11 @@
 @media screen and (max-width: 600px) {
   .LoginSignUpContainer {
     background-color: white;
+    position: static;
   }
   .LoginSignUpBox {
     width: 100vw;
-    height: 95vh;
+    height: 70vh;
   }
 
   .login_signUp_toggle {
@@ -217,4 +219,6 @@
     font: 300 1.9vmax "Roboto";
     padding: 1.8vmax;
   }
+
+  
 }
