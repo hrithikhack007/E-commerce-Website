@@ -27,11 +27,27 @@ const Shipping = ({ history }) => {
   const [pinCode, setPinCode] = useState(temp);
   const [phoneNo, setPhoneNo] = useState(temp);
 
+  const phoneValidator = (phone) => {
+    let res = true;
+
+    let num = Number(phone);
+    if (isNaN(num)) {
+      res = false;
+    }
+
+    return res;
+  };
+
   const shippingSubmit = (e) => {
     e.preventDefault();
 
     if (phoneNo.length < 10 || phoneNo.length > 10) {
       alert.error("Phone Number should be 10 digits long");
+      return;
+    }
+
+    if (phoneValidator(phoneNo) === false) {
+      alert.error("Invalid Phone Number");
       return;
     }
     dispatch(

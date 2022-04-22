@@ -4,7 +4,7 @@ import "./NotFound.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const NotFound = () => {
+const NotFound = ({ history }) => {
   return (
     <>
       {window.location.pathname === "/process/payment" ? (
@@ -12,8 +12,8 @@ const NotFound = () => {
           <div id="paymentBug">
             <Typography className="heading">Sorry For Inconvenience</Typography>
             <p className="message">
-              Please refresh the page once in case you are confirming your
-              order.
+              Please refresh the page once, in case you are proceeding for
+              Payment.
             </p>
           </div>
         </>

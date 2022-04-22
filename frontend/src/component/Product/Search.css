@@ -41,3 +41,20 @@
 .SearchBox > input[type="submit"]:hover {
   background-color: rgb(68, 122, 141);
 }
+
+@media screen and (max-width: 600px) {
+  .SearchBox > input[type="text"] {
+    height: 12%;
+    font-weight: 300;
+    font-size:3.5vmax;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    width: 70%;
+  }
+
+  .SearchBox > input[type="submit"] {
+    width: 20%;
+    height: 12%;
+    font: 300 2.7vmax "Roboto";
+  }
+}

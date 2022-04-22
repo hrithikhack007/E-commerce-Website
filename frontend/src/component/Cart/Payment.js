@@ -145,6 +145,21 @@ const Payment = ({ history }) => {
             className="paymentFormBtn"
           />
         </form>
+        <div className="testData">
+          <p>Test Data</p>
+          <div className="cardNumber data">
+            <span>Card Number : </span>
+            <p> 4242 4242 4242 4242</p>
+          </div>
+          <div className="expDate data">
+            <span>Expiry Date : </span>
+            <p> Any Future Date</p>
+          </div>
+          <div className="cvc data">
+            <span>CVC : </span>
+            <p> Any three Digit Number</p>
+          </div>
+        </div>
       </div>
     </>
   );

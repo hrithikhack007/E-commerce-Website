@@ -60,7 +60,45 @@
   background-color: rgb(179, 66, 46);
 }
 
+.testData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 22%;
+  margin-top: 1.5vmax;
+}
+
+.testData > .data {
+  padding: 1.2vmax 0vmax;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.testData > p {
+  font: 400 1.5vmax "Roboto";
+  color: rgba(0, 0, 0, 0.753);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+  padding: 1vmax 0;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
+
+.testData > .data > span {
+  font: 300 1.2vmax "Roboto";
+}
+
+.testData > .data > p {
+  font: 300 1vmax "Roboto";
+  margin-left: 0.3vmax;
+}
+
 @media screen and (max-width: 600px) {
+  .paymentContainer {
+    height: unset;
+  }
   .paymentForm {
     width: 90%;
   }
@@ -86,5 +124,28 @@
   .paymentFormBtn {
     font: 300 4vw "Roboto";
     padding: 4vw;
+  }
+
+  .testData {
+    width: 90%;
+  }
+
+  .testData > p {
+    font: 400 6vw "Roboto";
+    padding: 4vw 0;
+    width: 60%;
+  }
+
+  .testData > .data {
+    padding: 1.5vmax 0vmax;
+  }
+
+  .testData > .data > span {
+    font: 300 4vw "Roboto";
+  }
+
+  .testData > .data > p {
+    font: 300 3.5vw "Roboto";
+    margin-left: 0.5vmax;
   }
 }
