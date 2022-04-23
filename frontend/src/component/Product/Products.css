@@ -18,6 +18,11 @@
   /* margin-right: 5vmax; */
 }
 
+.hidden {
+  margin-left: 5vmax;
+  margin-right: 5vmax;
+}
+
 .paginationBox {
   display: flex;
   justify-content: center;

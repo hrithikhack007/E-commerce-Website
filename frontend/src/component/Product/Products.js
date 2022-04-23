@@ -69,51 +69,53 @@ const Products = ({ match }) => {
           <MetaData title="PRODUCTS -- ECOMMERCE" />
           <h2 className="productsHeading">Products</h2>
 
-          <div className="products">
+          <div className={`products ${currentPage === 1 ? "" : "hidden"}`}>
             {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
           </div>
 
-          <div className="filterBox">
-            <Typography>Price</Typography>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={25000}
-            />
-
-            <Typography>Categories</Typography>
-            <ul className="categoryBox">
-              {categories.map((category) => (
-                <li
-                  className="category-link"
-                  key={category}
-                  onClick={() => setCategory(category)}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
+          {currentPage === 1 ? (
+            <div className="filterBox">
+              <Typography>Price</Typography>
               <Slider
-                value={ratings}
-                onChange={(e, newRating) => {
-                  setRatings(newRating);
-                }}
-                aria-labelledby="continuous-slider"
-                main={0}
-                max={5}
+                value={price}
+                onChange={priceHandler}
                 valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
+                min={0}
+                max={25000}
               />
-            </fieldset>
-          </div>
+
+              <Typography>Categories</Typography>
+              <ul className="categoryBox">
+                {categories.map((category) => (
+                  <li
+                    className="category-link"
+                    key={category}
+                    onClick={() => setCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+
+              <fieldset>
+                <Typography component="legend">Ratings Above</Typography>
+                <Slider
+                  value={ratings}
+                  onChange={(e, newRating) => {
+                    setRatings(newRating);
+                  }}
+                  aria-labelledby="continuous-slider"
+                  main={0}
+                  max={5}
+                  valueLabelDisplay="auto"
+                />
+              </fieldset>
+            </div>
+          ) : null}
 
           {resultPerPage < count && (
             <div className="paginantionBox">
