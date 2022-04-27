@@ -11,7 +11,7 @@
   align-items: center;
   margin-top: 1vmax;
   border-top: 1px solid black;
-  padding: vmax;
+  /* padding: vmax; */
 }
 
 .noteHeading {
@@ -32,16 +32,16 @@
 
 @media screen and (max-width: 600px) {
   .noteBox {
-    margin: 0;
+    /* margin-top: 10vw; */
     padding: 0;
   }
 
   .noteHeading {
-    font: 500 3vmax "Roboto";
+    font: 500 3.5vw "Roboto";
   }
 
   .noteMessage > p {
-    font-size: 2vmax;
+    font-size: 3vw;
     justify-content: space-evenly;
     width: 80%;
     margin: 1vmax auto;

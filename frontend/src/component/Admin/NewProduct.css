@@ -106,32 +106,42 @@
     background-color: rgb(255, 255, 255);
   }
   .createProductForm {
-    padding: 5vmax;
+    height: unset;
+    padding: 5vw;
+  }
+
+  .newProductContainer h1 {
+    font: 400 5vw "Roboto";
+    padding: 2vw;
+    margin-top: 2vw;
+  }
+  .createProductForm > div {
+    margin: 1vw 0vw;
   }
 
   .createProductForm > div > input,
   .createProductForm > div > select,
   .createProductForm > div > textarea {
-    padding: 2.5vmax 5vmax;
-    font: 300 1.7vmax cursive;
+    padding: 3vw 8vw;
+    font: 350 3vw "Roboto";
   }
 
   .createProductForm > div > svg {
-    font-size: 2.8vmax;
+    font-size: 4vw;
   }
 
-  #createProductFormFile > img {
-    width: 8vmax;
+  #createProductFormImage > img {
+    width: 10vw;
     border-radius: 100%;
   }
 
   #createProductFormFile > input::file-selector-button {
-    height: 7vh;
-    font: 400 1.8vmax cursive;
+    height: 9vw;
+    font: 400 3vw cursive;
   }
 
   #createProductBtn {
-    font: 300 1.9vmax "Roboto";
-    padding: 1.8vmax;
+    font: 300 3.5vw "Roboto";
+    padding: 2vw;
   }
 }
