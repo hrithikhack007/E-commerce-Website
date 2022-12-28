@@ -32,13 +32,14 @@ class ApiFeatures {
     // filter for Price and Rating
 
     let queryStr = JSON.stringify(queryCopy);
+
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);
 
     this.query = this.query.find(JSON.parse(queryStr));
 
     return this;
   }
-
+  // efhiw
   pagination(resultPerPage) {
     const currentPage = Number(this.queryStr.page) || 1;
 
